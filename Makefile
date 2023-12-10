@@ -6,7 +6,7 @@
 #    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/10 13:25:47 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/10 14:03:41 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ $(NAME): $(LIBFT_LIB) $(MLX42_LIB) $(OBJS)
 clean:
 		$(RM) $(OBJS)
 		make -C $(LIBFT_DIR) clean
-		make -C $(MLX42_DIR) clean
+		rm -rf $(MLX42_DIR) clean
 
 fclean: clean
 		$(RM) $(NAME)
