@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
+#    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/10 14:03:41 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/11 12:57:52 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ MLX42_URL	= https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
-SRCS		=
+SRCS		= src/main.c
 
 INCLUDES	= -I$(MLX42_DIR)/include -I header -I libft
-LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -framework Cocoa -framework OpenGL -framework IOKit
+LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -g $(INCLUDES)
 OBJS		= $(SRCS:.c=.o)
