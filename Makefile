@@ -6,7 +6,7 @@
 #    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/11 21:25:49 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/13 10:59:32 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX42_URL	= https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
-SRCS		= src/main.c src/background.c src/hooks.c src/pixel.c
+SRCS		= src/main.c src/background.c src/hooks.c src/pixel.c src/draw_grid.c \
 
 INCLUDES	= -I$(MLX42_DIR)/include -I header -I libft
 LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit

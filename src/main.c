@@ -6,13 +6,18 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/11 21:45:24 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:01:00 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 // #include "structs.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdio.h>
+// #include "MLX42/MLX42.h"
 
 int32_t	main(int32_t argc, const char* argv[])
 {
