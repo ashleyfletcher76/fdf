@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/15 12:58:04 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:21:28 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,94 +16,62 @@
 
 void	set_pixels(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour)
 {
-	if (x < 0 || y < 0 || x >= img->width || y >= img->width)
+	if (x >= img->width || y >= img->height)
 		return ;
 	((int *)img->pixels)[y * img->width + x] = colour;
 }
 
-// void	draw_horizon_recurs(mlx_image_t *img, t_line_params params)
-// {
-// 	if (params.current >= params.end)
-// 		return ;
-// 	set_pixels(img, params.line_len, params.current, params.colour);
-// 	params.current++;
-// 	draw_horizon_recurs(img, params);
-// }
-
-// void	draw_verti_recurs(mlx_image_t *img, t_line_params params)
-// {
-// 	if (params.current >= params.end)
-// 		return ;
-// 	set_pixels(img, params.current, params.line_len, params.colour);
-// 	params.current++;
-// 	draw_verti_recurs(img, params);
-// }
-
-// void	draw_grid_recurse(t_grid_design params)
-// {
-// 	t_line_params	line_params;
-
-// 	if (params.current_x < params.image->width)
-// 	{
-// 		line_params.current = 0;
-// 		line_params.end = params.image->height;
-// 		line_params.line_len = params.current_x;
-// 		line_params.colour = params.colour;
-// 		draw_verti_recurs(params.image, line_params);
-// 		params.current_x += params.grid_size;
-// 		draw_grid_recurse(params);
-// 	}
-// 	if (params.current_y < params.image->height)
-// 	{
-// 		line_params.current = 0;
-// 		line_params.end = params.image->width;
-// 		line_params.line_len = params.current_y;
-// 		line_params.colour = params.colour;
-// 		draw_horizon_recurs(params.image, line_params);
-// 		params.current_y += params.grid_size;
-// 		draw_grid_recurse(params);
-// 	}
-// }
-
-void	draw_horizontal(mlx_image_t *img, int y, int line_len, int32_t colour)
+void	draw_horizontal(mlx_image_t *img, t_grid_params params, int y)
 {
 	int	x;
+	int	end_x;
 
-	x = 0;
-	while (x < line_len)
+	x = params.start_x;
+	end_x = params.start_x + (params.grid_size * (params.num_cols - 1));
+	while (x <= end_x)
 	{
-		set_pixels(img, x, y, colour);
+		set_pixels(img, x, y, params.colour);
 		x++;
 	}
 }
 
-void	draw_vertical(mlx_image_t *img, int x, int line_len, int32_t colour)
+void	draw_vertical(mlx_image_t *img, t_grid_params params, int x)
 {
 	int	y;
+	int	end_y;
 
-	y = 0;
-	while (y < line_len)
+	y = params.start_y;
+	end_y = params.start_y + (params.grid_size * (params.num_rows - 1));
+	while (y <= end_y)
 	{
-		set_pixels(img, x, y, colour);
+		set_pixels(img, x, y, params.colour);
 		y++;
 	}
 }
 
-void	draw_grid(mlx_image_t *image, int grd_sze, int32_t colour)
+void	draw_centered_grid(mlx_image_t *image, t_grid_params params)
 {
-	u_int32_t	x;
-	u_int32_t	y;
+	int	i;
+	int	x;
+	int	j;
+	int	y;
 
-	x = 0;
-	while (x < image->width)
+	params.start_x = (image->width - (params.grid_size
+				* (params.num_cols - 1))) / 2;
+	params.start_y = (image->height - (params.grid_size
+				* (params.num_rows - 1))) / 2;
+	i = 0;
+	j = 0;
+	while (i < params.num_cols)
 	{
-		draw_vertical(image, x, image->height, colour);
-		x += grd_sze;
+		x = params.start_x + i * params.grid_size;
+		draw_vertical(image, params, x);
+		i++;
 	}
-	y = 0;
-	while (y < image->height)
+	while (j < params.num_rows)
 	{
-		draw_horizontal(image, y, image->width, colour);
-		y += grd_sze;
+		y = params.start_y + j * params.grid_size;
+		draw_horizontal(image, params, y);
+		j++;
 	}
 }

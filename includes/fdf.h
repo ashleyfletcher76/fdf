@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/15 12:53:03 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:21:21 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,11 @@ void	background(void *param);
 int32_t	pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	hook(void *param);
 
-void	draw_grid(mlx_image_t *img, int grd_sze, int32_t colour);
-void	draw_vertical(mlx_image_t *img, int x, int line_len, int32_t colour);
-void	draw_horizontal(mlx_image_t *img, int y, int line_len, int32_t colour);
+
 void	set_pixels(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
 
-void	draw_grid_recurse(t_grid_design params);
-void	draw_verti_recurs(mlx_image_t *img, t_line_params params);
-void	draw_horizon_recurs(mlx_image_t *img, t_line_params params);
-void	background_recursive(t_fdf *fdf, uint32_t x, uint32_t y);
+void	draw_horizontal(mlx_image_t *img, t_grid_params params, int y);
+void	draw_vertical(mlx_image_t *img, t_grid_params params, int x);
+void	draw_centered_grid(mlx_image_t *image, t_grid_params params);
 
 #endif
