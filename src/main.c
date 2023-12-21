@@ -6,26 +6,29 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/12 15:01:00 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:58:29 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../MLX42/include/MLX42/MLX42.h"
-// #include "structs.h"
+#include "../includes/structs.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdio.h>
-// #include "MLX42/MLX42.h"
-
-int32_t	main(int32_t argc, const char* argv[])
+int32_t	main(void)
 {
-	t_fdf	fdf;
+	t_fdf			fdf;
+	t_grid_params	grid_params;
+	t_coord			start;
+	t_coord			end;
 
-	(void)argc;
-	(void)argv;
-	// Gotta error check this stuff
+	grid_params.grid_size = 25;
+	grid_params.num_cols = 10;
+	grid_params.num_rows = 10;
+	grid_params.colour = pixel(255, 255, 255, 255);
+	start.x = 0;
+	start.y = 0;
+	end.x = start.x + grid_params.grid_size * grid_params.num_cols;
+	end.y = start.y + grid_params.grid_size * grid_params.num_rows;
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!fdf.mlx)
 	{
@@ -45,10 +48,9 @@ int32_t	main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
-
-	mlx_loop_hook(fdf.mlx, background, &fdf);
+	background(&fdf);
+	grid(fdf.image, start, end, grid_params);
 	mlx_loop_hook(fdf.mlx, hook, &fdf);
-
 	mlx_loop(fdf.mlx);
 	mlx_terminate(fdf.mlx);
 	return (EXIT_SUCCESS);

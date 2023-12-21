@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:25:20 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/16 13:21:05 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:38:20 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,8 @@ void	background(void *param)
 	uint32_t		x;
 	uint32_t		y;
 	t_fdf			*fdf;
-	t_grid_params	grid_params;
 
 	fdf = (t_fdf *)param;
-	grid_params.grid_size = 25;
-	grid_params.num_cols = 10;
-	grid_params.num_rows = 10;
-	grid_params.colour = pixel(255, 255, 255, 255);
 	x = 0;
 	while (x < fdf->image->width)
 	{
@@ -35,5 +30,4 @@ void	background(void *param)
 		}
 		x++;
 	}
-	draw_centered_grid(fdf->image, grid_params);
 }

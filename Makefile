@@ -6,7 +6,7 @@
 #    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/13 10:59:32 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/19 13:29:02 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
 SRCS		= src/main.c src/background.c src/hooks.c src/pixel.c src/draw_grid.c \
+			src/draw_grid_utils.c \
 
 INCLUDES	= -I$(MLX42_DIR)/include -I header -I libft
 LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit
