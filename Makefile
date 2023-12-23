@@ -3,24 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
+#    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/19 13:29:02 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/22 18:18:51 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
-LIBFT_DIR		= libft
+LIBFT_DIR	= libft
 LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 
 MLX42_URL	= https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
-SRCS		= src/main.c src/background.c src/hooks.c src/pixel.c src/draw_grid.c \
-			src/draw_grid_utils.c \
+SRCS		= src/main.c \
+ 			src/map/background.c src/map/draw_grid.c src/map/map.c \
+			src/init/init.c \
+			src/hooks/hooks.c \
+			src/free_and_error/free_and_error.c \
+			src/pixels/pixel.c \
 
 INCLUDES	= -I$(MLX42_DIR)/include -I header -I libft
 LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit
