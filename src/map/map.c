@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:53:28 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/23 15:51:24 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/25 12:16:42 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,93 @@
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../includes/structs.h"
 
-t_grid3d	read_map_file(char *file_name)
+t_fdf	read_map_file(char *file_name)
 {
 	int			fd;
 	char		*line;
-	t_grid3d	grid;
+	t_fdf		grid;
 
-	grid.x = 0;
-	grid.y = 0;
 	grid.map = NULL;
+	grid.map_width = 0;
+	grid.map_height = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		exit (EXIT_FAILURE);
+	printf("Before parsing: map_width = %d, map_height = %d\n", grid.map_width, grid.map_height);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		parse_line(&grid, line);
-		grid.y++;
+		parse_line(&(grid.map), line, &(grid.map_width), &(grid.map_height));
+		grid.map_width = get_width(line);
 		free (line);
 	}
+	printf("After parsing: map_width = %d, map_height = %d\n", grid.map_width, grid.map_height);
 	close (fd);
 	return (grid);
 }
 
-t_points3d	init_point3d(int x, int y, int width)
-{
-	t_points3d point;
-
-	point.x = x;
-	point.y = y;
-	point.z_values = malloc(width * sizeof(int));
-	if (!point.z_values)
-		exit (EXIT_FAILURE);
-	return (point);
-}
-
-void	parse_line(t_grid3d *grid, char *line)
+void	parse_line(t_points3d ***map, char *line, int *width, int *height)
 {
 	char	**columns;
 	int		x;
-	int		index;
 
 	x = 0;
-	index = 0;
-	if (grid->y == 0)
-		columns = get_width(line);
+	*map = realloc(*map, (*height + 1) * sizeof(t_points3d *));
+	(*map)[*height] = malloc(*width * sizeof(t_points3d));
 	columns = ft_split(line, ' ');
-	grid->map = ft_realloc(grid->map, (grid->x + 1) * sizeof(t_points3d *));
-	if (!grid->map)
-		exit (EXIT_FAILURE);
-	while (columns[x] != NULL)
+	while (x < *width && columns[x] != NULL)
 	{
-		grid->map[grid->x][x].x = x;
-		grid->map[]
-		i++;
+		(*map)[*height][x].x = x;
+		(*map)[*height][x].y = *height;
+		(*map)[*height][x].z = ft_atoi(columns[x]);
+		// printf("x: %d, y: %d, z_values[0]: %d\n", (*map)[*height][x].x, (*map)[*height][x].y, (*map)[*height][x].z_values[0]);
 		x++;
 	}
+	(*height)++;
 	ft_freearr(columns);
+}
+
+// void	parse_line(t_points3d ***map, char *line, int *width, int *height)
+// {
+// 	char	**columns;
+// 	int		x;
+
+// 	x = 0;
+// 	*map = realloc(*map, (*height + 1) * sizeof(t_points3d *));
+// 	(*map)[*height] = malloc(*width * sizeof(t_points3d));
+// 	columns = ft_split(line, ' ');
+// 	while (x < *width && columns[x] != NULL)
+// 	{
+// 		(*map)[*height][x].x = x;
+// 		(*map)[*height][x].y = *height;
+// 		(*map)[*height][x].z_values = malloc(sizeof(int));
+// 		(*map)[*height][x].z_values[0] = ft_atoi(columns[x]);
+// 		// printf("x: %d, y: %d, z_values[0]: %d\n", (*map)[*height][x].x, (*map)[*height][x].y, (*map)[*height][x].z_values[0]);
+// 		x++;
+// 	}
+// 	(*height)++;
+// 	ft_freearr(columns);
+// }
+
+int	get_z_value_at_coordinate(t_fdf *grid, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (grid == NULL || grid->map == NULL)
+		return (0);
+	while (i < grid->map_height)
+	{
+		j = 0;
+		while (j < grid->map_width)
+		{
+			if (grid->map[i][j].x == x && grid->map[i][j].y == y)
+				return (grid->map[i][j].z);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	get_width(char *line)
@@ -84,30 +115,3 @@ int	get_width(char *line)
 	ft_freearr(split_line);
 	return (width);
 }
-
-void	resize_z_values(t_points3d *z_value, int new_size)
-{
-	z_value->z_values = ft_realloc(z_value->z_values, new_size * sizeof(int));
-	if (!z_value->z_values)
-		exit (EXIT_FAILURE);
-}
-
-// void	parse_line(t_points3d *values, char *line)
-// {
-// 	char	**columns;
-// 	int		x;
-// 	int		i;
-
-// 	x = 0;
-// 	i = 0;
-// 	if (grid->y == 0)
-// 		grid->x = get_width(line);
-// 	columns = ft_split(line, ' ');
-// 	while (x < grid->x && columns[x] != NULL)
-// 	{
-// 		grid->map[i]->z_values = ft_atoi(columns[x]);
-// 		x++;
-// 	}
-// 	grid->y++;
-// 	ft_freearr(columns);
-// }

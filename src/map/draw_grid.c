@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/23 12:10:37 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/26 10:19:00 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,90 +14,88 @@
 #include "../includes/structs.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-// void	draw_wireframe(t_fdf *fdf, int32_t colour)
-// {
-// 	uint32_t		x;
-// 	uint32_t		y;
-
-// 	x = 0;
-// 	while (x < fdf->image->width)
-// 	{
-// 		y = 0;
-// 		while (y < fdf->image->height)
-// 		{
-// 			mlx_put_pixel(fdf->image, x, y, colour);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
-
-void	draw_line(t_grid2d start, t_grid2d end, mlx_image_t *img, int32_t colour)
+void	single_line(t_fdf *fdf)
 {
-	t_bres	params;
-	int		err2;
+	t_points3d	start;
+	t_points3d	end;
 
-	params = init_bres(start, end);
+	start.x = 100;
+	start.y = 100;
+	end.x = 400;
+	end.y = 400;
+
+	draw_line(fdf, start, end);
+}
+
+void	draw_lines_in_direction(t_fdf *fdf, int i, int j, int step)
+{
+	t_points3d	start;
+	t_points3d	end;
+
+	if (i < fdf->map_height - 1 && j < fdf->map_width - 1)
+	{
+		start.x = j;
+		start.y = i;
+		end.x = j + step;
+		end.y = i;
+		draw_line(fdf, start, end);
+		draw_lines_in_direction(fdf, i + step, j, step);
+	}
+}
+
+void	draw_wireframe(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+	int	step;
+
+	i = 0;
+	j = 0;
+	step = 1;
+	draw_lines_in_direction(fdf, i, j, step);
+	step = 1;
+	draw_lines_in_direction(fdf, i, j, step);
+}
+
+void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
+{
+	t_bres		bresen;
+
+	init_bres(&bresen, p1, p2);
+	printf("here draw\n");
 	while (1)
 	{
-		// set_pixels(img, start.x, start.y, colour);
-		mlx_put_pixel(img, start.x, start.y, colour);
-		if (start.x == end.x && start.y == end.y)
+		draw_pixel(fdf, p1, WIREFRAME_COLOR);
+		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
-		err2 = 2 * params.err;
-		if (err2 > -params.dy)
+		bresen.e2 = 2 * bresen.err;
+		if (bresen.e2 >= bresen.dy)
 		{
-			params.err -= params.dy;
-			start.x += params.sx;
+			if (p1.x == p2.x)
+				break ;
+			bresen.err += bresen.dy;
+			p1.x += bresen.sx;
 		}
-		if (err2 < params.dx)
+		if (bresen.e2 <= bresen.dx)
 		{
-			params.err += params.dx;
-			start.y += params.sy;
+			if (p1.y == p2.y)
+				break ;
+			bresen.err += bresen.dx;
+			p1.y += bresen.sy;
 		}
 	}
 }
 
-void	set_pixels(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour)
+void	set_pixls(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour)
 {
 	if (x >= img->width || y >= img->height)
 		return ;
 	((int *)img->pixels)[y * img->width + x] = colour;
 }
 
-void	draw_wireframe(t_grid3d *grid3d, mlx_image_t *img, int32_t colour)
-{
-	int			i;
-	int			j;
-	t_grid2d	point_1;
-	t_grid2d	point_2;
-	int			offset_x;
-	int			offset_y;
 
-	i = 0;
-	offset_x = WIDTH / 2;
-	offset_y = HEIGHT / 2;
-	while (i < grid3d->x - 1)
-	{
-		j = 0;
-		while (j < grid3d->y - 1)
-		{
-			point_1.x = grid3d->map[i][j].x + offset_x;
-			point_1.y = grid3d->map[i][j].y + offset_y;
-			if (i + 1 < grid3d->x)
-			{
-				point_2.x = grid3d->map[i + 1][j].x + offset_x;
-				point_2.y = grid3d->map[i + 1][j].y + offset_y;
-				draw_line(point_1, point_2, img, colour);
-			}
-			if (j + 1 < grid3d->y)
-			{
-				point_2.x = grid3d->map[i][j + 1].x + offset_x;
-				point_2.y = grid3d->map[i][j + 1].y + offset_y;
-				draw_line(point_1, point_2, img, colour);
-			}
-			j++;
-		}
-		i++;
-	}
+void	draw_pixel(t_fdf *fdf, t_points3d point, uint32_t color)
+{
+	if (point.x < WIDTH && point.x > 300 && point.y < HEIGHT && point.y > 0)
+		mlx_put_pixel(fdf->image, point.x, point.y, color);
 }

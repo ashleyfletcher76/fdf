@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/23 15:38:43 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/26 10:19:31 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,24 @@ int32_t		pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		background(void *param);
 void		hook(void *param);
 
-void		set_pixels(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
+void		set_pixls(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
 
-void		draw_wireframe(t_grid3d *grid3d, mlx_image_t *img, int32_t colour);
-void		draw_line(t_grid2d start, t_grid2d end, mlx_image_t *img, int32_t colour);
+void		draw_wireframe(t_fdf *fdf);
+void		draw_lines_in_direction(t_fdf *fdf, int i, int j, int step);
+void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2);
 
-t_grid3d	init_grid3d(int x, int y);
-t_bres		init_bres(t_grid2d start, t_grid2d end);
+void		init_bres(t_bres *params, t_points3d start, t_points3d end);
 
-t_grid3d	read_map_file(char *file_name);
+t_fdf		read_map_file(char *file_name);
 int			get_width(char *line);
-t_points3d	init_point3d(int x, int y, int width);
-void		parse_line(t_grid3d *grid, char *line);
+void		parse_line(t_points3d ***map, char *line, int *width, int *height);
 
-void		resize_z_values(t_points3d *z_value, int new_size);
+void		draw_pixel(t_fdf *fdf, t_points3d point, uint32_t color);
 
-void		free_grid3d(t_grid3d *grid3d);
+int			get_z_value_at_coordinate(t_fdf *grid, int x, int y);
+
+void		single_line(t_fdf *fdf);
+
+void		free_map(t_points3d ***map, int height);
 
 #endif
