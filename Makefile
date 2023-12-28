@@ -6,9 +6,11 @@
 #    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/22 18:18:51 by asfletch         ###   ########.fr        #
+#    Updated: 2023/12/26 13:20:21 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT:
 
 NAME		= fdf
 
