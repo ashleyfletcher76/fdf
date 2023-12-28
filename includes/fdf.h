@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/27 16:18:25 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/28 09:52:12 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void		init_bres(t_bres *params, t_points3d start, t_points3d end);
 
 t_fdf		read_map_file(char *file_name);
 int			get_width(char *line);
-void		parse_line(t_fdf *grid, char *line);
+
+void		parse_line(t_fdf *grid, char *line, size_t old_size);
+// void		parse_line(t_fdf *grid, char *line);
 
 void		init_image_projection(t_fdf *fdf);
 // void		parse_line(t_points3d ***map, char *line, int *width, int *height);
