@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 12:58:01 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/30 15:34:31 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	draw_wire(t_fdf *fdf)
 		{
 			if (x + 1 < fdf->map_width)
 			{
-				draw_line(fdf, fdf->map[y][x], fdf->map[y][x + 1]);
+				draw_line(fdf, init_coord(fdf->map[y][x]), init_coord(fdf->map[y][x + 1]));
 			}
 			if (y + 1 < fdf->map_height)
 			{
-				draw_line(fdf, fdf->map[y][x], fdf->map[y  + 1][x]);
+				draw_line(fdf, init_coord(fdf->map[y][x]), init_coord(fdf->map[y  + 1][x]));
 			}
 		}
 	}
@@ -40,8 +40,6 @@ void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
 {
 	t_bres		bresen;
 
-	init_coord(&p1);
-	init_coord(&p2);
 	init_bres(&bresen, p1, p2);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 12:50:58 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/30 15:39:59 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	init_bres(t_bres *params, t_points3d start, t_points3d end)
 	params->err = params->dx - params->dy;
 }
 
-t_points3d	init_coord(t_points3d *point)
+t_points3d init_coord(t_points3d point)
 {
 	int	offset_x;
 	int	offset_y;
 
 	offset_x = WIDTH / 2;
 	offset_y = HEIGHT / 2;
-	point->x = (point->x * 20) + offset_x;
-	point->y = (point->y * 20) + offset_y;
-	return (*point);
+	point.x = (point.x * 30) + offset_x;
+	point.y = (point.y * 30) + offset_y;
+	return (point);
 }
