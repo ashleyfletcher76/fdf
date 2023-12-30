@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/28 17:04:59 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:58:27 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int32_t	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	background(&fdf);
-	init_image_projection(&fdf);
 	// single_line(&fdf);
 	draw_wire(&fdf);
 	mlx_loop_hook(fdf.mlx, hook, &fdf);
@@ -99,53 +98,6 @@ int32_t	main(int argc, char **argv)
 // 		}
 // 		i++;
 // 	}
-// 	// draw_wireframe(&fdf);
-// 	// single_line(&fdf);
-// 	// draw_wire(&fdf);
-// 	mlx_loop_hook(fdf.mlx, hook, &fdf);
-// 	mlx_loop(fdf.mlx);
-// 	// free_grid3d(&fdf);
-// 	// printf("here");
-// 	mlx_terminate(fdf.mlx);
-// 	return (EXIT_SUCCESS);
-// }
-
-// int32_t	main(int argc, char **argv)
-// {
-// 	t_fdf		fdf;
-
-// 	if (argc != 2)
-// 		return (EXIT_FAILURE);
-// 	fdf = read_map_file(argv[1]);
-// 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
-// 	if (!fdf.mlx)
-// 		return (EXIT_FAILURE);
-// 	fdf.image = mlx_new_image(fdf.mlx, 1200, 800);
-// 	if (!fdf.image)
-// 	{
-// 		mlx_close_window(fdf.mlx);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	if (mlx_image_to_window(fdf.mlx, fdf.image, 0, 0) == -1)
-// 	{
-// 		mlx_close_window(fdf.mlx);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	background(&fdf);
-// 	// printf("x = %d, y = %d\n", fdf.map[0][0].x, fdf.map[0][1].y);
-// 	// printf("x = %d, y = %d\n", fdf.map[0][1].x, fdf.map[5][0].y);
-// 	print_coordinates(fdf.map, fdf.map_height,fdf.map_width,0, 0);
-// 	// int i = 0;
-// 	// while (i < fdf.map_height)
-// 	// {
-// 	// 	int j = 0;
-// 	// 	while (j < fdf.map_width)
-// 	// 	{
-// 	// 		printf("x = %d\n y = %d\n", fdf.map[i][j].x, fdf.map[i][j].y);
-// 	// 		j++;
-// 	// 	}
-// 	// 	i++;
-// 	// }
 // 	// draw_wireframe(&fdf);
 // 	// single_line(&fdf);
 // 	// draw_wire(&fdf);

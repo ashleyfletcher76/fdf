@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/12/30 11:54:29 by asfletch         ###   ########.fr       */
-=======
-/*   Updated: 2023/12/29 09:12:01 by asfletch         ###   ########.fr       */
->>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
+/*   Updated: 2023/12/30 12:57:40 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +33,7 @@ void		hook(void *param);
 
 void		set_pixls(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
 
-void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int scale);
+void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2);
 
 void		init_bres(t_bres *params, t_points3d start, t_points3d end);
 
@@ -45,18 +41,10 @@ t_fdf		read_map_file(char *file_name);
 int			get_width(char *line);
 
 void		parse_line(t_fdf *grid, char *line, size_t old_size);
-// void		parse_line(t_fdf *grid, char *line);
 
-void		init_image_projection(t_fdf *fdf);
 t_points3d	init_coord(t_points3d *point);
-// void	init_coord(t_fdf *fdf, t_points3d point);
-// void	init_coord(t_fdf *fdf, t_points3d p1, t_points3d p2, t_image_mod proj);
 
 void		draw_pixel(t_fdf *fdf, t_points3d point);
-
-int			get_z_value_at_coordinate(t_fdf *grid, int x, int y);
-
-void		single_line(t_fdf *fdf);
 
 void		draw_wire(t_fdf *fdf);
 
