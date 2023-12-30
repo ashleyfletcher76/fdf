@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/28 09:52:12 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:54:29 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void		parse_line(t_fdf *grid, char *line, size_t old_size);
 // void		parse_line(t_fdf *grid, char *line);
 
 void		init_image_projection(t_fdf *fdf);
-// void		parse_line(t_points3d ***map, char *line, int *width, int *height);
+t_points3d	init_coord(t_points3d *point);
+// void	init_coord(t_fdf *fdf, t_points3d point);
+// void	init_coord(t_fdf *fdf, t_points3d p1, t_points3d p2, t_image_mod proj);
 
 void		draw_pixel(t_fdf *fdf, t_points3d point);
 
@@ -55,8 +57,6 @@ void		single_line(t_fdf *fdf);
 void		draw_wire(t_fdf *fdf);
 
 void		free_map(t_points3d ***map, int height);
-
-void		init_rows(t_fdf *grid);
 
 void		print_coordinates(t_points3d **map, int height, int width, int x, int y);
 
