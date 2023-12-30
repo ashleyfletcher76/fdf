@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/30 11:54:29 by asfletch         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/29 09:12:01 by asfletch         ###   ########.fr       */
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +37,7 @@ void		hook(void *param);
 
 void		set_pixls(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
 
-void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2);
+void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int scale);
 
 void		init_bres(t_bres *params, t_points3d start, t_points3d end);
 

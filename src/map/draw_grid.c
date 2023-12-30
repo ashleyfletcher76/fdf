@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/30 12:02:40 by asfletch         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/29 09:12:23 by asfletch         ###   ########.fr       */
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +22,13 @@ void	draw_wire(t_fdf *fdf)
 {
 	int			x;
 	int			y;
+<<<<<<< HEAD
 
+=======
+	int			scale;
+
+	scale = 20;
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 	y = -1;
 	while (++y < fdf->map_height)
 	{
@@ -27,29 +37,59 @@ void	draw_wire(t_fdf *fdf)
 		{
 			if (x + 1 < fdf->map_width)
 			{
+<<<<<<< HEAD
 				draw_line(fdf, init_coord(&fdf->map[y][x]), init_coord(&fdf->map[y][x + 1]));
 			}
 			if (y + 1 < fdf->map_height)
 			{
 				draw_line(fdf, init_coord(&fdf->map[y][x]), init_coord(&fdf->map[y  + 1][x]));
+=======
+				draw_line(fdf, fdf->map[y][x], fdf->map[y][x + 1], scale);
+			}
+			if (y + 1 < fdf->map_height)
+			{
+				draw_line(fdf, fdf->map[y][x], fdf->map[y + 1][x], scale);
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 			}
 		}
 	}
 }
 
+<<<<<<< HEAD
 void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
+=======
+void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int scale)
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 {
 	t_bres		bresen;
+	int			offset_x;
+	int			offset_y;
 
+<<<<<<< HEAD
 	// init_coord(&p1);
 	// init_coord(&p2);
 	init_bres(&bresen, p1, p2);
 	while (1)
 	{
 		mlx_put_pixel(fdf->image, p1.x, p1.y, WIREFRAME_COLOR);
+=======
+	offset_x = WIDTH / 2;
+	offset_y = HEIGHT / 2;
+	p1.x *= scale;
+	p1.y *= scale;
+	p2.x *= scale;
+	p2.y *= scale;
+	init_bres(&bresen, p1, p2);
+	while (1)
+	{
+		// mlx_put_pixel(fdf->image, p1.x, p1.y, WIREFRAME_COLOR);
+		mlx_put_pixel(fdf->image, p1.x + offset_x, p1.y + offset_y, WIREFRAME_COLOR);
+		// draw_pixel(fdf, p1);
+>>>>>>> cf5ed9173113196f476e3de686c869055faa5d5e
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
+		printf("p1.x = %d p2.x = %d p1.y = %d p2.y = %d\nbresen.e2 = %d bresen.err = %d bresen.dy = %d bresen.dx = %d\n", p1.x, p2.x, p1.y, p2.y, bresen.e2, bresen.err, bresen.dy, bresen.dx);
 		if (bresen.e2 >= bresen.dy)
 		{
 			if (p1.x == p2.x)
