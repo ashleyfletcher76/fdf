@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 15:34:31 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/31 09:29:05 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
 	init_bres(&bresen, p1, p2);
 	while (1)
 	{
+		// printf("p1.x = %d p1.y = %d p2.x = %d p2.y = %d\n", p1.x, p1.y, p2.x, p2.y);
+		printf("\n");
 		mlx_put_pixel(fdf->image, p1.x, p1.y, WIREFRAME_COLOR);
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
+		printf("bresen.e2 = %d bresen.err = %d bresen.dx = %d bresen.dy = %d\n", bresen.e2, bresen.err, bresen.dx, bresen.dy);
+		printf("\n");
 		if (bresen.e2 >= bresen.dy)
 		{
 			if (p1.x == p2.x)
