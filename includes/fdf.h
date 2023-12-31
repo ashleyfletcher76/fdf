@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 13:09:16 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:14:56 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			get_width(char *line);
 void		parse_line(t_fdf *grid, char *line, size_t old_size);
 
 t_points3d	init_coord(t_points3d point);
+t_points3d	apply_sin_cos(t_points3d point);
 
 void		draw_pixel(t_fdf *fdf, t_points3d point);
 
