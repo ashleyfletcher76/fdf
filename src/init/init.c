@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 13:06:19 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/31 15:26:17 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,33 @@ static void	isometric(int *x, int *y, int z)
 	*y = -z + (before_x + before_y) * sin(0.523599);
 }
 
+static float	scale_factor(t_fdf *fdf)
+{
+	int	scale_1;
+	int	scale_2;
+
+	scale_1 = fdf->map_width;
+	scale_2 = fdf->map_height;
+	return (SCALE / (scale_1 + scale_2));
+}
+
 t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 {
-	int	offset_x;
-	int	offset_y;
-	int	centre_x;
-	int	centre_y;
+	int		offset_x;
+	int		offset_y;
+	int		centre_x;
+	int		centre_y;
+	int		scale;
 
 	centre_x = WIDTH / 2;
 	centre_y = HEIGHT / 2;
-	offset_x = centre_x - (fdf->map_width * 20) / 2;
-	offset_y = centre_y - (fdf->map_height * 20) / 2;
-	point.x = (point.x * 20);
-	point.y = (point.y * 20);
-	//printf("Before transform p.x = %d p.y = %d\n", point.x, point.y);
-	//printf("\n");
+	scale = scale_factor(fdf);
+	offset_x = centre_x - (fdf->map_width * scale) / 2;
+	offset_y = centre_y - (fdf->map_height * scale) / 2;
+	point.x = (point.x * scale);
+	point.y = (point.y * scale);
 	isometric(&point.x, &point.y, point.z);
 	point.x += offset_x;
 	point.y += offset_y;
-	//printf("After transform p.x = %d p.y = %d\n", point.x, point.y);
-	//printf("\n");
 	return (point);
 }

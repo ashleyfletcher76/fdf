@@ -6,17 +6,18 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 12:26:48 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/31 15:13:13 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1080
 # define WIREFRAME_COLOR 0xFFFFFFFF
 # define WIRE_BLUE 0xFF0000FF
+# define SCALE 1000
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/includes/libft.h"

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 12:58:27 by asfletch         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:09:50 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int32_t	main(int argc, char **argv)
 	fdf.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!fdf.mlx)
 		return (EXIT_FAILURE);
-	fdf.image = mlx_new_image(fdf.mlx, 1200, 800);
+	fdf.image = mlx_new_image(fdf.mlx, 1920, 1080);
 	if (!fdf.image)
 	{
 		mlx_close_window(fdf.mlx);
