@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 15:26:17 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:24:29 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ void	init_bres(t_bres *params, t_points3d start, t_points3d end)
 	params->err = params->dx - params->dy;
 }
 
+void	init_camera(t_fdf *fdf)
+{
+	fdf->camera = (t_camera *)malloc(sizeof(t_camera));
+	fdf->camera->alpha = 0;
+	fdf->camera->beta = 0;
+	fdf->camera->gamma = 0;
+	fdf->camera->zoom = scale_factor(fdf);
+}
+
 static void	isometric(int *x, int *y, int z)
 {
 	int	before_x;
@@ -40,7 +49,7 @@ static void	isometric(int *x, int *y, int z)
 	*y = -z + (before_x + before_y) * sin(0.523599);
 }
 
-static float	scale_factor(t_fdf *fdf)
+float	scale_factor(t_fdf *fdf)
 {
 	int	scale_1;
 	int	scale_2;
@@ -56,15 +65,13 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 	int		offset_y;
 	int		centre_x;
 	int		centre_y;
-	int		scale;
 
 	centre_x = WIDTH / 2;
 	centre_y = HEIGHT / 2;
-	scale = scale_factor(fdf);
-	offset_x = centre_x - (fdf->map_width * scale) / 2;
-	offset_y = centre_y - (fdf->map_height * scale) / 2;
-	point.x = (point.x * scale);
-	point.y = (point.y * scale);
+	offset_x = centre_x - (fdf->map_width * fdf->camera->zoom) / 2;
+	offset_y = centre_y - (fdf->map_height * fdf->camera->zoom) / 2;
+	point.x = (point.x * fdf->camera->zoom);
+	point.y = (point.y * fdf->camera->zoom);
 	isometric(&point.x, &point.y, point.z);
 	point.x += offset_x;
 	point.y += offset_y;

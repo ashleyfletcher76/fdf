@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2023/12/26 13:20:21 by asfletch         ###   ########.fr        #
+#    Updated: 2024/01/01 14:26:38 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MLX42_URL	= https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
-SRCS		= src/main.c \
+SRCS		= src/main.c src/print_debug.c \
  			src/map/background.c src/map/draw_grid.c src/map/map.c \
 			src/init/init.c \
 			src/hooks/hooks.c \

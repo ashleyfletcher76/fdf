@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:37:15 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 10:58:10 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:22:24 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define STRUCTS_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
+
+typedef struct s_camera
+{
+	float	zoom;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	double	z_divisor;
+	double	offset_x;
+	double	offset_y;
+}	t_camera;
 
 typedef struct s_points3d
 {
@@ -37,6 +48,7 @@ typedef struct s_fdf
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_points3d	**map;
+	t_camera	*camera;
 	int			map_width;
 	int			map_height;
 }	t_fdf;

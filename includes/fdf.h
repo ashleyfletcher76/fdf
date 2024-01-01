@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 15:13:13 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:22:17 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int			get_width(char *line);
 void		parse_line(t_fdf *grid, char *line, size_t old_size);
 
 t_points3d	init_coord(t_fdf *fdf, t_points3d point);
-t_points3d	apply_sin_cos(t_points3d point);
+void		init_camera(t_fdf *fdf);
+float		scale_factor(t_fdf *fdf);
 
 void		draw_pixel(t_fdf *fdf, t_points3d point);
 

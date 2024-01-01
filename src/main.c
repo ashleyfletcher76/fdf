@@ -3,29 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/31 13:09:50 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:26:12 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../includes/structs.h"
-
-void	print_coordinates(t_points3d **map, int height, int width, int x, int y)
-{
-	if (x >= 0 && x < width && y >= 0 && y < height)
-	{
-		printf("Coordinates at (%d, %d): x = %d, y = %d, z = %d\n",
-				x, y, map[y][x].x, map[y][x].y, map[y][x].z);
-	}
-	else
-	{
-		printf("Invalid coordinates (%d, %d)\n", x, y);
-	}
-}
 
 int32_t	main(int argc, char **argv)
 {
@@ -48,6 +35,7 @@ int32_t	main(int argc, char **argv)
 		mlx_close_window(fdf.mlx);
 		return (EXIT_FAILURE);
 	}
+	init_camera(&fdf);
 	background(&fdf);
 	// single_line(&fdf);
 	draw_wire(&fdf);
