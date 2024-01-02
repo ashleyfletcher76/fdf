@@ -3,16 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 09:54:45 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:37:00 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../includes/structs.h"
 #include "../MLX42/include/MLX42/MLX42.h"
+
+int32_t	init_mlx(t_fdf *fdf)
+{
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	if (!fdf->mlx)
+		return (EXIT_FAILURE);
+	fdf->image = mlx_new_image(fdf->mlx, 1920, 1080);
+	if (!fdf->image)
+	{
+		mlx_close_window(fdf->mlx);
+		return (EXIT_FAILURE);
+	}
+	if (mlx_image_to_window(fdf->mlx, fdf->image, 0, 0) == -1)
+	{
+		mlx_close_window(fdf->mlx);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
 void	init_bres(t_bres *params, t_points3d start, t_points3d end)
 {
@@ -38,27 +57,6 @@ void	init_camera(t_fdf *fdf)
 	fdf->camera->zoom = scale_factor(fdf);
 }
 
-static void	isometric(int *x, int *y, int z)
-{
-	int	before_x;
-	int	before_y;
-
-	before_x = *x;
-	before_y = *y;
-	*x = (before_x - before_y) * cos(0.523599);
-	*y = -z + (before_x + before_y) * sin(0.523599);
-}
-
-float	scale_factor(t_fdf *fdf)
-{
-	int	scale_1;
-	int	scale_2;
-
-	scale_1 = fdf->map_width;
-	scale_2 = fdf->map_height;
-	return (SCALE / (scale_1 + scale_2));
-}
-
 t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 {
 	int		offset_x;
@@ -73,6 +71,9 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 	point.x = (point.x * fdf->camera->zoom);
 	point.y = (point.y * fdf->camera->zoom);
 	isometric(&point.x, &point.y, point.z);
+	rotate_x(&point.y, &point.z, fdf->camera->alpha);
+	rotate_y(&point.x, &point.z, fdf->camera->beta);
+	rotate_z(&point.x, &point.y, fdf->camera->gamma);
 	point.x += offset_x;
 	point.y += offset_y;
 	return (point);

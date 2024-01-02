@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 21:25:23 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 14:54:20 by asfletch         ###   ########.fr       */
+/*   Created: 2024/01/02 16:33:01 by asfletch          #+#    #+#             */
+/*   Updated: 2024/01/02 16:33:14 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "../includes/structs.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-void	hook(void *param)
+void	isometric(int *x, int *y, int z)
 {
-	t_fdf	*fdf;
+	int	before_x;
+	int	before_y;
 
-	fdf = (t_fdf *)param;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fdf->mlx);
+	before_x = *x;
+	before_y = *y;
+	*x = (before_x - before_y) * cos(0.523599);
+	*y = -z + (before_x + before_y) * sin(0.523599);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 09:55:21 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:31:54 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@
 # include <math.h>
 
 int32_t		main(int argc, char **argv);
+int32_t		init_mlx(t_fdf *fdf);
 
 int32_t		pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		background(void *param);
 void		hook(void *param);
-
-void		set_pixls(mlx_image_t *img, uint32_t x, uint32_t y, int32_t colour);
 
 void		draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2);
 
@@ -49,13 +48,19 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point);
 void		init_camera(t_fdf *fdf);
 float		scale_factor(t_fdf *fdf);
 
+void		isometric(int *x, int *y, int z);
+
 void		draw_pixel(t_fdf *fdf, t_points3d point);
 
 void		draw_wire(t_fdf *fdf);
 
-void		rotation_z(int *x, int *y, double gamma);
-void		rotation_y(int *x, int *z, double beta);
-void		rotation_x(int *y, int *z, double alpha);
+void		rotate_z(int *x, int *y, double gamma);
+void		rotate_y(int *x, int *z, double beta);
+void		rotate_x(int *y, int *z, double alpha);
+void		apply_rotate_map(t_fdf *fdf);
+void		rotate_map(t_fdf *fdf);
+
+void		user_input(void *param);
 
 void		free_map(t_points3d ***map, int height);
 

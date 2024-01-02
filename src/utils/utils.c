@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 21:25:23 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 14:54:20 by asfletch         ###   ########.fr       */
+/*   Created: 2024/01/02 16:35:04 by asfletch          #+#    #+#             */
+/*   Updated: 2024/01/02 16:35:20 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "../includes/structs.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-void	hook(void *param)
+float	scale_factor(t_fdf *fdf)
 {
-	t_fdf	*fdf;
+	int	scale_1;
+	int	scale_2;
 
-	fdf = (t_fdf *)param;
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fdf->mlx);
+	scale_1 = fdf->map_width;
+	scale_2 = fdf->map_height;
+	return (SCALE / (scale_1 + scale_2));
 }
