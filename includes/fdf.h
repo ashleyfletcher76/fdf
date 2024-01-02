@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/01 14:22:17 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/02 09:55:21 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define WIREFRAME_COLOR 0xFFFFFFFF
 # define WIRE_BLUE 0xFF0000FF
 # define SCALE 1000
+# define ROTATION 0.5
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/includes/libft.h"
@@ -51,6 +52,10 @@ float		scale_factor(t_fdf *fdf);
 void		draw_pixel(t_fdf *fdf, t_points3d point);
 
 void		draw_wire(t_fdf *fdf);
+
+void		rotation_z(int *x, int *y, double gamma);
+void		rotation_y(int *x, int *z, double beta);
+void		rotation_x(int *y, int *z, double alpha);
 
 void		free_map(t_points3d ***map, int height);
 

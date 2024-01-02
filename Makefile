@@ -6,7 +6,7 @@
 #    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2024/01/01 14:26:38 by asfletch         ###   ########.fr        #
+#    Updated: 2024/01/02 10:02:25 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
 SRCS		= src/main.c src/print_debug.c \
  			src/map/background.c src/map/draw_grid.c src/map/map.c \
+			src/map/rotation.c \
 			src/init/init.c \
 			src/hooks/hooks.c \
 			src/free_and_error/free_and_error.c \

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:25:23 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/15 13:05:13 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:04:07 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ void	hook(void *param)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fdf->mlx);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-		fdf->image->instances[0].y -= 5;
+		rotation_x(&fdf->camera->beta += ROTATION);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-		fdf->image->instances[0].y += 5;
+		rotation_x(&fdf->camera->beta -= ROTATION);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-		fdf->image->instances[0].x -= 5;
+		rotation_y(&fdf->camera->alpha -= ROTATION);
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-		fdf->image->instances[0].x += 5;
+		rotation_y(&fdf->camera->alpha += ROTATION);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
+		rotation_z(&fdf->camera->gamma += ROTATION);
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+		rotation_z(&fdf->camera->gamma -= ROTATION);
 }
