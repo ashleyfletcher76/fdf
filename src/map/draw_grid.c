@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 16:25:56 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 12:45:39 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ void	draw_wire(t_fdf *fdf)
 			if (x + 1 < fdf->map_width)
 			{
 				draw_line(fdf, init_coord(fdf, fdf->map[y][x]),
-					init_coord(fdf, fdf->map[y][x + 1]));
+					init_coord(fdf, fdf->map[y][x + 1]), fdf->map[y][x].z);
 			}
 			if (y + 1 < fdf->map_height)
 			{
 				draw_line(fdf, init_coord(fdf, fdf->map[y][x]),
-					init_coord(fdf, fdf->map[y  + 1][x]));
+					init_coord(fdf, fdf->map[y  + 1][x]), fdf->map[y][x].z);
 			}
 		}
 	}
 }
 
-void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
+void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int p3)
 {
 	t_bres		bresen;
 
 	init_bres(&bresen, p1, p2);
 	while (1)
 	{
-		draw_pixel(fdf, p1);
+		draw_pixel(fdf, p1, p3);
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
@@ -68,8 +68,18 @@ void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2)
 	}
 }
 
-void	draw_pixel(t_fdf *fdf, t_points3d point)
+void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
 {
 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-		mlx_put_pixel(fdf->image, point.x, point.y, WIREFRAME_COLOR);
+		mlx_put_pixel(fdf->image, point.x, point.y, calculate_colour(z));
+}
+
+int	calculate_colour(int z)
+{
+	if (z > 0)
+		return (BLUE);
+	else if (z < 0)
+		return (RED);
+	else
+		return (WHITE);
 }

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 16:36:55 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 12:46:03 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int32_t	main(int argc, char **argv)
 	fdf = read_map_file(argv[1]);
 	init_mlx(&fdf);
 	init_camera(&fdf);
-	background(&fdf);
 	draw_wire(&fdf);
 	mlx_loop_hook(fdf.mlx, hook, &fdf);
 	mlx_loop_hook(fdf.mlx, user_input, &fdf);

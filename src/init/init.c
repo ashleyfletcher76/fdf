@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/02 16:37:00 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 12:45:45 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 	offset_y = centre_y - (fdf->map_height * fdf->camera->zoom) / 2;
 	point.x = (point.x * fdf->camera->zoom);
 	point.y = (point.y * fdf->camera->zoom);
-	isometric(&point.x, &point.y, point.z);
 	rotate_x(&point.y, &point.z, fdf->camera->alpha);
 	rotate_y(&point.x, &point.z, fdf->camera->beta);
 	rotate_z(&point.x, &point.y, fdf->camera->gamma);
+	point.x = round(point.x);
+	point.y = round(point.y);
+	point.z = round(point.z);
+	isometric(&point.x, &point.y, point.z);
 	point.x += offset_x;
 	point.y += offset_y;
 	return (point);
