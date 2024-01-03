@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:53:28 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/30 12:58:12 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:24:13 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,27 @@ void	parse_line(t_fdf *grid, char *line, size_t old_size)
 		x++;
 	}
 	ft_freearr(columns);
+}
+
+void	calculate_min_max_depth(t_fdf *fdf)
+{
+	int	x;
+	int	y;
+	int	current_z;
+
+	fdf->max_depth = 0;
+	fdf->min_depth = 0;
+	y = -1;
+	while (++y < fdf->map_height)
+	{
+		x = -1;
+		while (++x < fdf->map_width)
+		{
+			current_z = fdf->map[y][x].z;
+			if (current_z < fdf->min_depth)
+				fdf->min_depth = current_z;
+			if (current_z > fdf->max_depth)
+				fdf->max_depth = current_z;
+		}
+	}
 }

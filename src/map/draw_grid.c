@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 12:45:39 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:21:31 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,35 @@ void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int p3)
 
 void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
 {
+	double	range;
+	int		i;
+	int		j;
+
+	range = 0.5;
+	i = -range;
 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-		mlx_put_pixel(fdf->image, point.x, point.y, calculate_colour(z));
+	{
+		while (i <= range)
+		{
+			j = -range;
+			while (j <= range)
+			{
+				mlx_put_pixel(fdf->image, point.x + i, point.y + j, calculate_colour(z));
+				j++;
+			}
+			i++;
+		}
+	}
 }
+
+// int	calculate_colour(t_fdf *fdf, int z)
+// {
+// 	double		normal_value;
+// 	t_colours	colours;
+
+
+// 	return (colour);
+// }
 
 int	calculate_colour(int z)
 {
@@ -83,3 +109,9 @@ int	calculate_colour(int z)
 	else
 		return (WHITE);
 }
+
+// void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
+// {
+// 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
+// 		mlx_put_pixel(fdf->image, point.x, point.y, calculate_colour(z));
+// }

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 12:43:26 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:21:45 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		apply_rotate_map(t_fdf *fdf);
 void		rotate_map(t_fdf *fdf);
 
 int			calculate_colour(int z);
+// int			calculate_colour(t_fdf *fdf, int z);
+void		calculate_min_max_depth(t_fdf *fdf);
 
 void		user_input(void *param);
 
