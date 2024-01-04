@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 11:01:15 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:37:19 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int32_t	init_mlx(t_fdf *fdf)
 	return (EXIT_SUCCESS);
 }
 
-void	init_bres(t_bres *params, t_points3d start, t_points3d end)
+void	init_bres(t_bres *params, t_points2d start, t_points2d end)
 {
 	params->dx = abs(end.x - start.x);
 	params->dy = -abs(end.y - start.y);
@@ -54,15 +54,16 @@ void	init_camera(t_fdf *fdf)
 	fdf->camera->alpha = 0;
 	fdf->camera->beta = 0;
 	fdf->camera->gamma = 0;
-	fdf->camera->zoom = (int)scale_factor(fdf);
+	fdf->camera->zoom = scale_factor(fdf);
 }
 
-t_points3d	init_coord(t_fdf *fdf, t_points3d point)
+t_points2d	init_coord(t_fdf *fdf, t_points3d point)
 {
 	int		offset_x;
 	int		offset_y;
 	int		centre_x;
 	int		centre_y;
+	t_points2d	points2d;
 
 	centre_x = WIDTH / 2;
 	centre_y = HEIGHT / 2;
@@ -76,5 +77,8 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 	isometric(&point.x, &point.y, point.z);
 	point.x += offset_x;
 	point.y += offset_y;
-	return (point);
+	points2d.x = point.x;
+	points2d.y = point.y;
+	points2d.z = point.z;
+	return (points2d);
 }

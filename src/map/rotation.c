@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 09:39:44 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 10:18:26 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:31:33 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 // void	apply_rotate_map(t_fdf *fdf)
 // {
-// 	int			x;
-// 	int			y;
+// 	double			x;
+// 	double			y;
 // 	y = -1;
 // 	while (++y < fdf->map_height)
 // 	{
@@ -51,28 +51,28 @@ void	rotate_map(t_fdf *fdf)
 	draw_wire(fdf);
 }
 
-void	rotate_x(int *y, int *z, double alpha)
+void	rotate_x(double *y, double *z, double alpha)
 {
-	int	prev_y;
+	double	prev_y;
 
 	prev_y = *y;
 	*y = round(prev_y * cos(alpha) + *z * sin(alpha));
 	*z = round(-prev_y * sin(alpha) + *z * cos(alpha));
 }
 
-void	rotate_y(int *x, int *z, double beta)
+void	rotate_y(double *x, double *z, double beta)
 {
-	int	prev_x;
+	double	prev_x;
 
 	prev_x = *x;
 	*x = round(prev_x * cos(beta) + *z * sin(beta));
 	*z = round(-prev_x * sin(beta) + *z * cos(beta));
 }
 
-void	rotate_z(int *x, int *y, double gamma)
+void	rotate_z(double *x, double *y, double gamma)
 {
-	int	prev_x;
-	int	prev_y;
+	double	prev_x;
+	double	prev_y;
 
 	prev_x = *x;
 	prev_y = *y;

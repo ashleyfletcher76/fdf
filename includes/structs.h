@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:37:15 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 16:15:06 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:16:08 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 typedef struct s_colours
 {
-	uint32_t	red;
-	uint32_t	blue;
-	uint32_t	white;
+	int32_t	red;
+	int32_t	green;
+	int32_t	blue;
+	int32_t	alpha;
 }	t_colours;
-
 
 typedef struct s_camera
 {
@@ -36,10 +36,17 @@ typedef struct s_camera
 
 typedef struct s_points3d
 {
+	double	x;
+	double	y;
+	double	z;
+}	t_points3d;
+
+typedef struct s_points2d
+{
 	int	x;
 	int	y;
 	int	z;
-}	t_points3d;
+}	t_points2d;
 
 typedef struct s_bres
 {
@@ -61,6 +68,7 @@ typedef struct s_fdf
 	int			map_height;
 	int			min_depth;
 	int			max_depth;
+	float		colour;
 }	t_fdf;
 
 #endif

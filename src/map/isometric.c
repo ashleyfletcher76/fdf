@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:33:01 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 14:28:26 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:14:08 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../includes/structs.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-void	isometric(int *x, int *y, int z)
+void	isometric(double *x, double *y, double z)
 {
-	int	before_x;
-	int	before_y;
+	double	before_x;
+	double	before_y;
 
 	before_x = *x;
 	before_y = *y;

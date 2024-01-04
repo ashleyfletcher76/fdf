@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 10:07:01 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:39:55 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,27 @@ void	draw_wire(t_fdf *fdf)
 			if (x + 1 < fdf->map_width)
 			{
 				draw_line(fdf, init_coord(fdf, fdf->map[y][x]),
-					init_coord(fdf, fdf->map[y][x + 1]), fdf->map[y][x].z);
+					init_coord(fdf, fdf->map[y][x + 1]));
 			}
 			if (y + 1 < fdf->map_height)
 			{
 				draw_line(fdf, init_coord(fdf, fdf->map[y][x]),
-					init_coord(fdf, fdf->map[y  + 1][x]), fdf->map[y][x].z);
+					init_coord(fdf, fdf->map[y  + 1][x]));
 			}
 		}
 	}
 }
 
-void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int p3)
+void	draw_line(t_fdf *fdf, t_points2d p1, t_points2d p2)
 {
-	t_bres		bresen;
+	t_bres	bresen;
+	float	gradient;
 
 	init_bres(&bresen, p1, p2);
+	gradient = calculate_gradient(p1, p2);
 	while (1)
 	{
-		draw_pixel(fdf, p1, p3);
+		draw_pixel(fdf, p1, gradient);
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
@@ -68,46 +70,28 @@ void	draw_line(t_fdf *fdf, t_points3d p1, t_points3d p2, int p3)
 	}
 }
 
-void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
+void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
 {
+	int32_t	colour;
 	double	range;
 	int		i;
 	int		j;
 
-	range = 0.5;
+	range = 0.01;
 	i = -range;
 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
 	{
-		while (i <= range)
+		// printf("Valid coordinates: x=%d, y=%d\n", point.x, point.y);
+		while (i++ <= range)
 		{
 			j = -range;
-			while (j <= range)
+			while (j++ <= range)
 			{
-				mlx_put_pixel(fdf->image, point.x + i, point.y + j, calculate_colour(z));
-				j++;
+				colour = assign_colour(gradient);
+				mlx_put_pixel(fdf->image, point.x + i, point.y + j, colour);
 			}
-			i++;
 		}
 	}
-}
-
-// int	calculate_colour(t_fdf *fdf, int z)
-// {
-// 	double		normal_value;
-// 	t_colours	colours;
-
-
-// 	return (colour);
-// }
-
-int	calculate_colour(int z)
-{
-	if (z > 0)
-		return (BLUE);
-	else if (z < 0)
-		return (RED);
-	else
-		return (WHITE);
 }
 
 // void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
