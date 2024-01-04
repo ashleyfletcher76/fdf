@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 15:06:41 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:01:15 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_camera(t_fdf *fdf)
 	fdf->camera->alpha = 0;
 	fdf->camera->beta = 0;
 	fdf->camera->gamma = 0;
-	fdf->camera->zoom = scale_factor(fdf);
+	fdf->camera->zoom = (int)scale_factor(fdf);
 }
 
 t_points3d	init_coord(t_fdf *fdf, t_points3d point)
@@ -66,16 +66,13 @@ t_points3d	init_coord(t_fdf *fdf, t_points3d point)
 
 	centre_x = WIDTH / 2;
 	centre_y = HEIGHT / 2;
-	offset_x = centre_x - (fdf->map_width * fdf->camera->zoom) / 2;
-	offset_y = centre_y - (fdf->map_height * fdf->camera->zoom) / 2;
-	point.x = (point.x * fdf->camera->zoom);
-	point.y = (point.y * fdf->camera->zoom);
+	offset_x = centre_x - (fdf->map_width * (int)fdf->camera->zoom) / 2;
+	offset_y = centre_y - (fdf->map_height * (int)fdf->camera->zoom) / 2;
+	point.x = (int)(point.x * fdf->camera->zoom);
+	point.y = (int)(point.y * fdf->camera->zoom);
 	rotate_x(&point.y, &point.z, fdf->camera->alpha);
 	rotate_y(&point.x, &point.z, fdf->camera->beta);
 	rotate_z(&point.x, &point.y, fdf->camera->gamma);
-	// point.x = round(point.x);
-	// point.y = round(point.y);
-	// point.z = round(point.z);
 	isometric(&point.x, &point.y, point.z);
 	point.x += offset_x;
 	point.y += offset_y;
