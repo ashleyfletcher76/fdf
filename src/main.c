@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 11:22:28 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 06:12:41 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int32_t	main(int argc, char **argv)
 {
-	t_fdf		fdf;
+	t_fdf	fdf;
+	t_bres	params;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
@@ -24,6 +25,7 @@ int32_t	main(int argc, char **argv)
 	init_mlx(&fdf);
 	init_camera(&fdf);
 	calculate_min_max_depth(&fdf);
+	init_bres_params(&params);
 	draw_wire(&fdf);
 	mlx_loop_hook(fdf.mlx, hook, &fdf);
 	mlx_loop_hook(fdf.mlx, user_input, &fdf);

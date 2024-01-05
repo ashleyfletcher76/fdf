@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 15:32:08 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 06:12:25 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ void		draw_wire(t_fdf *fdf);
 void		rotate_z(double *x, double *y, double gamma);
 void		rotate_y(double *x, double *z, double beta);
 void		rotate_x(double *y, double *z, double alpha);
-void		apply_rotate_map(t_fdf *fdf);
 void		rotate_map(t_fdf *fdf);
 
-int			calculate_colour(int z);
-// int			calculate_colour(t_fdf *fdf, int z);
+void		init_bres_params(t_bres *params);
+
 void		calculate_min_max_depth(t_fdf *fdf);
 
 int32_t		assign_colour(float gradient);

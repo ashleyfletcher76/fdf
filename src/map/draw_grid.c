@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 15:39:55 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 07:28:07 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void	draw_wire(t_fdf *fdf)
 void	draw_line(t_fdf *fdf, t_points2d p1, t_points2d p2)
 {
 	t_bres	bresen;
-	float	gradient;
 
 	init_bres(&bresen, p1, p2);
-	gradient = calculate_gradient(p1, p2);
 	while (1)
 	{
-		draw_pixel(fdf, p1, gradient);
+		draw_pixel(fdf, p1, calculate_gradient(p1, p2));
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
@@ -77,11 +75,11 @@ void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
 	int		i;
 	int		j;
 
-	range = 0.01;
+	range = 0.5;
 	i = -range;
 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
 	{
-		// printf("Valid coordinates: x=%d, y=%d\n", point.x, point.y);
+		// printf("p.x = %d p.y = %d\n", point.x, point.y);
 		while (i++ <= range)
 		{
 			j = -range;
@@ -94,8 +92,12 @@ void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
 	}
 }
 
-// void	draw_pixel(t_fdf *fdf, t_points3d point, int z)
+// void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
 // {
+// 	int32_t	colour;
+
+// 	colour = assign_colour(gradient);
+// 	// printf("x = %d y = %d\n\n", point.x, point.y);
 // 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-// 		mlx_put_pixel(fdf->image, point.x, point.y, calculate_colour(z));
+// 		mlx_put_pixel(fdf->image, point.x, point.y, colour);
 // }
