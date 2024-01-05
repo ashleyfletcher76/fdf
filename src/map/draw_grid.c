@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 07:28:07 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:11:48 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_wire(t_fdf *fdf)
 			if (y + 1 < fdf->map_height)
 			{
 				draw_line(fdf, init_coord(fdf, fdf->map[y][x]),
-					init_coord(fdf, fdf->map[y  + 1][x]));
+					init_coord(fdf, fdf->map[y + 1][x]));
 			}
 		}
 	}
@@ -68,36 +68,35 @@ void	draw_line(t_fdf *fdf, t_points2d p1, t_points2d p2)
 	}
 }
 
-void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
-{
-	int32_t	colour;
-	double	range;
-	int		i;
-	int		j;
-
-	range = 0.5;
-	i = -range;
-	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-	{
-		// printf("p.x = %d p.y = %d\n", point.x, point.y);
-		while (i++ <= range)
-		{
-			j = -range;
-			while (j++ <= range)
-			{
-				colour = assign_colour(gradient);
-				mlx_put_pixel(fdf->image, point.x + i, point.y + j, colour);
-			}
-		}
-	}
-}
-
 // void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
 // {
 // 	int32_t	colour;
+// 	double	range;
+// 	int		i;
+// 	int		j;
 
-// 	colour = assign_colour(gradient);
-// 	// printf("x = %d y = %d\n\n", point.x, point.y);
+// 	range = 0.5;
+// 	i = -range;
 // 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-// 		mlx_put_pixel(fdf->image, point.x, point.y, colour);
+// 	{
+// 		printf("p.x = %d p.y = %d p.z = %d\n", point.x, point.y, point.z);
+// 		while (i++ <= range)
+// 		{
+// 			j = -range;
+// 			while (j++ <= range)
+// 			{
+// 				colour = assign_colour(gradient);
+// 				mlx_put_pixel(fdf->image, point.x + i, point.y + j, colour);
+// 			}
+// 		}
+// 	}
 // }
+
+void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
+{
+	int32_t	colour;
+
+	colour = assign_colour(gradient);
+	if (point.x < WIDTH && point.x > 0 && point.y < HEIGHT && point.y > 0)
+		mlx_put_pixel(fdf->image, point.x, point.y, colour);
+}

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 09:39:44 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 16:47:04 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 09:39:18 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,6 @@ void	rotate_map(t_fdf *fdf)
 	fdf->camera->gamma = fmod(fdf->camera->gamma, 2 * M_PI);
 	draw_wire(fdf);
 }
-
-// void	rotate_map(t_fdf *fdf)
-// {
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_UP))
-// 		fdf->camera->alpha += 0.1;
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_DOWN))
-// 		fdf->camera->alpha -= 0.1;
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT))
-// 		fdf->camera->beta -= 0.1;
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_RIGHT))
-// 		fdf->camera->beta += 0.1;
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_U))
-// 		fdf->camera->gamma += 0.1;
-// 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-// 		fdf->camera->gamma -= 0.1;
-// 	while (fdf->camera->alpha < 0) fdf->camera->alpha += 2 * M_PI;
-// 	while (fdf->camera->alpha >= 2 * M_PI) fdf->camera->alpha -= 2 * M_PI;
-
-// 	while (fdf->camera->beta < 0) fdf->camera->beta += 2 * M_PI;
-// 	while (fdf->camera->beta >= 2 * M_PI) fdf->camera->beta -= 2 * M_PI;
-
-// 	while (fdf->camera->gamma < 0) fdf->camera->gamma += 2 * M_PI;
-// 	while (fdf->camera->gamma >= 2 * M_PI) fdf->camera->gamma -= 2 * M_PI;
-
-// 	draw_wire(fdf);
-// }
 
 void	rotate_x(double *y, double *z, double alpha)
 {

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:53:28 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/03 15:24:13 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:12:30 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ t_fdf	read_map_file(char *file_name)
 	t_fdf		grid;
 	size_t		old_size;
 
-	grid.map = NULL;
-	grid.map_width = 0;
-	grid.map_height = 0;
+	init_map_params(&grid);
 	old_size = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		exit (EXIT_FAILURE);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		grid.map_width = get_width(line);
 		parse_line(&grid, line, old_size);
 		free (line);
 		grid.map_height++;
 		old_size = grid.map_height * sizeof(t_points3d *);
+		line = get_next_line(fd);
 	}
 	close (fd);
 	return (grid);
@@ -59,10 +59,11 @@ void	parse_line(t_fdf *grid, char *line, size_t old_size)
 	int		x;
 
 	x = 0;
-	grid->map = ft_realloc(grid->map, old_size, (grid->map_height + 1) * sizeof(t_points3d *));
+	grid->map = ft_realloc(grid->map, old_size, (grid->map_height + 1)
+			* sizeof(t_points3d *));
 	if (!grid->map)
 	{
-		printf("Failure\n");
+		free (grid->map);
 		exit(EXIT_FAILURE);
 	}
 	grid->map[grid->map_height] = malloc(grid->map_width * sizeof(t_points3d));

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:26:18 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/04 15:24:17 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:12:54 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,10 @@ float	calculate_gradient(t_points2d p1, t_points2d p2)
 {
 	float	elevation_diff;
 	float	distance;
-	float	x1;
-	float	x2;
-	float	y1;
-	float	y2;
-	float	z1;
-	float	z2;
 
-	x1 = (float)p1.x;
-	x2 = (float)p2.x;
-	y1 = (float)p1.y;
-	y2 = (float)p2.y;
-	z1 = (float)p1.z;
-	z2 = (float)p2.z;
-	// printf("p1.x = %f, p1.y = %f, p2.x = %f, p2.y = %f\n", x1, y1, x2, y2);
 	elevation_diff = (float)p2.z - (float)p1.z;
-	distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) + pow(z2 - z1, 2));
-	// printf("elevation = %f distance = %f\n", elevation_diff, distance);
+	distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)
+			+ pow(p2.z - p1.z, 2));
 	if (distance == 0.0)
 		return (0.0);
 	else

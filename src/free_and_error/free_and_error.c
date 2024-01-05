@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 09:20:09 by asfletch          #+#    #+#             */
-/*   Updated: 2023/12/24 09:37:57 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:10:28 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ void	free_map(t_points3d ***map, int height)
 	free(*map);
 	*map = NULL;
 }
-

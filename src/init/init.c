@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 06:48:04 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:10:46 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int32_t	init_mlx(t_fdf *fdf)
 	fdf->image = mlx_new_image(fdf->mlx, 1920, 1080);
 	if (!fdf->image)
 	{
+		mlx_delete_image(fdf->mlx, fdf->image);
 		mlx_close_window(fdf->mlx);
 		return (EXIT_FAILURE);
 	}
@@ -31,6 +32,13 @@ int32_t	init_mlx(t_fdf *fdf)
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
+}
+
+void	init_map_params(t_fdf *fdf)
+{
+	fdf->map = NULL;
+	fdf->map_height = 0;
+	fdf->map_width = 0;
 }
 
 void	init_bres(t_bres *params, t_points2d start, t_points2d end)
@@ -51,6 +59,11 @@ void	init_bres(t_bres *params, t_points2d start, t_points2d end)
 void	init_camera(t_fdf *fdf)
 {
 	fdf->camera = (t_camera *)malloc(sizeof(t_camera));
+	if (!fdf->camera)
+	{
+		free (fdf->camera);
+		exit (EXIT_FAILURE);
+	}
 	fdf->camera->alpha = 0;
 	fdf->camera->beta = 0;
 	fdf->camera->gamma = 0;
@@ -59,10 +72,10 @@ void	init_camera(t_fdf *fdf)
 
 t_points2d	init_coord(t_fdf *fdf, t_points3d point)
 {
-	int		offset_x;
-	int		offset_y;
-	int		centre_x;
-	int		centre_y;
+	int			offset_x;
+	int			offset_y;
+	int			centre_x;
+	int			centre_y;
 	t_points2d	points2d;
 
 	centre_x = WIDTH / 2;

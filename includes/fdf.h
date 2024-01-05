@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 06:12:25 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:08:46 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void		rotate_x(double *y, double *z, double alpha);
 void		rotate_map(t_fdf *fdf);
 
 void		init_bres_params(t_bres *params);
+void		init_map_params(t_fdf *fdf);
 
 void		calculate_min_max_depth(t_fdf *fdf);
 
 int32_t		assign_colour(float gradient);
+// int32_t		assign_colour(double gradient);
 float		calculate_gradient(t_points2d p1, t_points2d p2);
 
 void		user_input(void *param);
 
 void		free_map(t_points3d ***map, int height);
-
-void		print_coordinates(t_points3d **map, int height, int width, int x, int y);
 
 #endif
