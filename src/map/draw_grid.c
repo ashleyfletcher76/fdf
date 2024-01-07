@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:10:59 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 10:11:48 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:46:23 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_line(t_fdf *fdf, t_points2d p1, t_points2d p2)
 	init_bres(&bresen, p1, p2);
 	while (1)
 	{
-		draw_pixel(fdf, p1, calculate_gradient(p1, p2));
+		draw_pixel(fdf, p1);
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		bresen.e2 = 2 * bresen.err;
@@ -68,35 +68,9 @@ void	draw_line(t_fdf *fdf, t_points2d p1, t_points2d p2)
 	}
 }
 
-// void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
-// {
-// 	int32_t	colour;
-// 	double	range;
-// 	int		i;
-// 	int		j;
-
-// 	range = 0.5;
-// 	i = -range;
-// 	if (point.x < WIDTH &&point.x > 0 && point.y < HEIGHT && point.y > 0)
-// 	{
-// 		printf("p.x = %d p.y = %d p.z = %d\n", point.x, point.y, point.z);
-// 		while (i++ <= range)
-// 		{
-// 			j = -range;
-// 			while (j++ <= range)
-// 			{
-// 				colour = assign_colour(gradient);
-// 				mlx_put_pixel(fdf->image, point.x + i, point.y + j, colour);
-// 			}
-// 		}
-// 	}
-// }
-
-void	draw_pixel(t_fdf *fdf, t_points2d point, float gradient)
+void	draw_pixel(t_fdf *fdf, t_points2d point)
 {
-	int32_t	colour;
-
-	colour = assign_colour(gradient);
 	if (point.x < WIDTH && point.x > 0 && point.y < HEIGHT && point.y > 0)
-		mlx_put_pixel(fdf->image, point.x, point.y, colour);
+		mlx_put_pixel(fdf->image, point.x, point.y,
+			get_colour(point.original_z, fdf->min_depth, fdf->max_depth));
 }

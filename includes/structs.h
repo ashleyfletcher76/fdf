@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:37:15 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 05:19:48 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:42:19 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,14 @@
 
 # include "../MLX42/include/MLX42/MLX42.h"
 
-typedef struct s_colours
-{
-	int32_t	red;
-	int32_t	green;
-	int32_t	blue;
-	int32_t	alpha;
-}	t_colours;
-
 typedef struct s_camera
 {
 	float	zoom;
 	double	alpha;
 	double	beta;
 	double	gamma;
-	double	z_divisor;
-	double	offset_x;
-	double	offset_y;
+	double	centre_x;
+	double	centre_y;
 }	t_camera;
 
 typedef struct s_points3d
@@ -46,6 +37,7 @@ typedef struct s_points2d
 	int	x;
 	int	y;
 	int	z;
+	int	original_z;
 }	t_points2d;
 
 typedef struct s_bres
@@ -68,7 +60,6 @@ typedef struct s_fdf
 	int			map_height;
 	int			min_depth;
 	int			max_depth;
-	float		colour;
 }	t_fdf;
 
 #endif

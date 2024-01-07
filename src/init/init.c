@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:57:07 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/05 10:10:46 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:47:16 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	init_camera(t_fdf *fdf)
 	fdf->camera->alpha = 0;
 	fdf->camera->beta = 0;
 	fdf->camera->gamma = 0;
+	fdf->camera->centre_x = WIDTH / 2;
+	fdf->camera->centre_y = HEIGHT / 2;
 	fdf->camera->zoom = scale_factor(fdf);
 }
 
@@ -74,24 +76,25 @@ t_points2d	init_coord(t_fdf *fdf, t_points3d point)
 {
 	int			offset_x;
 	int			offset_y;
-	int			centre_x;
-	int			centre_y;
 	t_points2d	points2d;
+	t_points3d	temp;
 
-	centre_x = WIDTH / 2;
-	centre_y = HEIGHT / 2;
-	offset_x = centre_x - (fdf->map_width * fdf->camera->zoom) / 2;
-	offset_y = centre_y - (fdf->map_height * fdf->camera->zoom) / 2;
-	point.x = (point.x * fdf->camera->zoom);
-	point.y = (point.y * fdf->camera->zoom);
-	rotate_x(&point.y, &point.z, fdf->camera->alpha);
-	rotate_y(&point.x, &point.z, fdf->camera->beta);
-	rotate_z(&point.x, &point.y, fdf->camera->gamma);
-	isometric(&point.x, &point.y, point.z);
-	point.x += offset_x;
-	point.y += offset_y;
-	points2d.x = round(point.x);
-	points2d.y = round(point.y);
-	points2d.z = round(point.z);
+	temp = point;
+	offset_x = fdf->camera->centre_x - (fdf->map_width
+			* fdf->camera->zoom) / 2;
+	offset_y = fdf->camera->centre_y - (fdf->map_height
+			* fdf->camera->zoom) / 2;
+	temp.x = (temp.x * fdf->camera->zoom);
+	temp.y = (temp.y * fdf->camera->zoom);
+	rotate_x(&temp.y, &temp.z, fdf->camera->alpha);
+	rotate_y(&temp.x, &temp.z, fdf->camera->beta);
+	rotate_z(&temp.x, &temp.y, fdf->camera->gamma);
+	isometric(&temp.x, &temp.y, temp.z);
+	temp.x += offset_x;
+	temp.y += offset_y;
+	points2d.x = round(temp.x);
+	points2d.y = round(temp.y);
+	points2d.z = round(temp.z);
+	points2d.original_z = round(point.z);
 	return (points2d);
 }

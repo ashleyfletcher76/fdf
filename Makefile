@@ -6,7 +6,7 @@
 #    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2024/01/04 11:26:43 by asfletch         ###   ########.fr        #
+#    Updated: 2024/01/07 14:30:31 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,13 @@ MLX42_URL	= https://github.com/codam-coding-college/MLX42.git
 MLX42_DIR	= MLX42
 MLX42_LIB	= $(MLX42_DIR)/build/libmlx42.a
 
-SRCS		= src/main.c src/print_debug.c \
+SRCS		= src/main.c \
  			src/map/background.c src/map/draw_grid.c src/map/map.c \
 			src/map/rotation.c src/map/isometric.c \
 			src/init/init.c \
 			src/utils/utils.c src/utils/colour.c \
 			src/hooks/hooks.c src/hooks/user_input.c \
 			src/free_and_error/free_and_error.c \
-			src/pixels/pixel.c \
 
 INCLUDES	= -I$(MLX42_DIR)/include -I header -I libft
 LDINCLUDES	= -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft -lglfw -framework Cocoa -framework OpenGL -framework IOKit
@@ -48,7 +47,6 @@ $(MLX42_DIR) :
 
 $(MLX42_LIB): $(MLX42_DIR)
 			cd $(MLX42_DIR) && cmake -B build && cmake --build build
-
 
 $(NAME): $(LIBFT_LIB) $(MLX42_LIB) $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LDINCLUDES) -o $(NAME)
