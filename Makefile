@@ -6,11 +6,9 @@
 #    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2024/01/07 14:30:31 by asfletch         ###   ########.fr        #
+#    Updated: 2024/01/07 18:44:35 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-.SILENT:
 
 NAME		= fdf
 
@@ -50,6 +48,7 @@ $(MLX42_LIB): $(MLX42_DIR)
 
 $(NAME): $(LIBFT_LIB) $(MLX42_LIB) $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LDINCLUDES) -o $(NAME)
+		@echo "Succesful!"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
