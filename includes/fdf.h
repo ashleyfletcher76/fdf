@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:16:45 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/08 07:42:35 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:14:33 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		draw_pixel(t_fdf *fdf, t_points2d point);
 void		draw_wire(t_fdf *fdf);
 int			str_is_valid(char *str);
 int			check_valid_map(t_fdf *fdf);
+void		check_new_line(t_fdf *fdf, char *line);
 
 int			get_colour(int z, int min_z, int max_z);
 

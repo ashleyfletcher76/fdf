@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:53:28 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/08 10:35:03 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:15:43 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_fdf	read_map_file(char *file_name)
 	t_fdf		grid;
 	size_t		old_size;
 
-	init_map_params(&grid);
 	old_size = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
@@ -29,6 +28,8 @@ t_fdf	read_map_file(char *file_name)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		if (line[0] == '\n')
+			check_new_line(&grid, line);
 		grid.map_width = get_width(line);
 		parse_line(&grid, line, old_size);
 		free (line);
@@ -69,12 +70,12 @@ void	parse_line(t_fdf *grid, char *line, size_t old_size)
 	columns = ft_split(line, ' ');
 	while (++x < grid->map_width && columns[x] != NULL)
 	{
-		// if (str_is_valid(columns[x]) == 0)
-		// {
-		// 	ft_freearr(columns);
-		// 	ft_printf("FAILURE!!\n");
-		// 	exit(EXIT_FAILURE);
-		// }
+		if (str_is_valid(columns[x]) == 0)
+		{
+			ft_freearr(columns);
+			ft_printf("FAILURE!!\n");
+			exit(EXIT_FAILURE);
+		}
 		grid->map[grid->map_height][x].x = x;
 		grid->map[grid->map_height][x].y = grid->map_height;
 		grid->map[grid->map_height][x].z = ft_atoi(columns[x]);
@@ -87,15 +88,12 @@ int	str_is_valid(char *str)
 	int i;
 
 	i = 0;
-	// if (str[i] == '\0')
-	// 	return (0);
 	if (str[i] == '-')
 		i++;
-	// if (str[i] == '\0')
-	// 	return (0);
 	while (str[i])
 	{
-		// ft_printf("here\n");
+		if (str[i] == '\n' && str[i + 1] == '\0')
+			return (1);
 		if (ft_isdigit(str[i]) == 0)
 			return (0);
 		i++;

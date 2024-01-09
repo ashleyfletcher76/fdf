@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 09:20:09 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/08 07:24:43 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:14:44 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,10 @@ void	free_map(t_points3d ***map, int height)
 	*map = NULL;
 }
 
-int	check_valid_map(t_fdf *fdf)
+void	check_new_line(t_fdf *fdf, char *line)
 {
-	int i = 0;
-	while (i < fdf->map_height)
-	{
-		int j = 0;
-		while (j < fdf->map_width)
-		{
-			// if (!ft_isdigit(fdf->map[i][j].z))
-			// {
-			// 	printf("FAILURE!\n");
-			// 	return (-1);
-			// }
-			printf("x = %f y = %f z = %f\n", fdf->map[i][j].x, fdf->map[i][j].y, fdf->map[i][j].z);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	free (line);
+	free_map(&fdf->map, fdf->map_height);
+	ft_printf("False map!!\n");
+	exit (EXIT_FAILURE);
 }
-
-// int	check_valid_map(t_fdf *fdf)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = -1;
-// 	while (++y < fdf->map_height)
-// 	{
-// 		x = -1;
-// 		while (++x < fdf->map_width)
-// 		{
-// 		// ft_printf("z = %d\n", fdf->map[y][x].z);
-// 			if (fdf->map[y][x].z > '0' && fdf->map[y][x].z > '9')
-// 			{
-// 				ft_printf("FAILURE!!\n");
-// 				return (-1);
-// 			}
-// 			else
-// 				return (0);
-// 		}
-// 	}
-// 	return (0);
-// }

@@ -6,7 +6,7 @@
 /*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/08 08:18:23 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:10:04 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ int32_t	main(int argc, char **argv)
 		ft_printf("Failure\n");
 		return (EXIT_FAILURE);
 	}
+	init_map_params(&fdf);
 	fdf = read_map_file(argv[1]);
-	// if (check_valid_map(&fdf) == -1)
-	// 	return (EXIT_FAILURE);
-	// check_valid_map(&fdf);
 	calculate_min_max_depth(&fdf);
 	init_mlx(&fdf);
 	init_camera(&fdf);
