@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:53:28 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/09 09:15:43 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:30:40 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_fdf	read_map_file(char *file_name)
 	t_fdf		grid;
 	size_t		old_size;
 
+	init_map_params(&grid);
 	old_size = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
@@ -85,7 +86,7 @@ void	parse_line(t_fdf *grid, char *line, size_t old_size)
 
 int	str_is_valid(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '-')

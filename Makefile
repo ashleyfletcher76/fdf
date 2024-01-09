@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 13:25:34 by asfletch          #+#    #+#              #
-#    Updated: 2024/01/09 08:49:57 by asfletch         ###   ########.fr        #
+#    Updated: 2024/01/09 15:18:59 by asfletch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ $(MLX42_LIB): $(MLX42_DIR)
 
 $(NAME): $(LIBFT_LIB) $(MLX42_LIB) $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LDINCLUDES) -o $(NAME)
-		@echo "Succesful!!!"
+
+$(ECHO): @echo "Succesful!!!"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

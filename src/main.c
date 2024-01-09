@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asfletch <asfletch@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: asfletch <asfletch@student.42heilbronn>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:20:47 by asfletch          #+#    #+#             */
-/*   Updated: 2024/01/09 09:10:04 by asfletch         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:29:57 by asfletch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int32_t	main(int argc, char **argv)
 		ft_printf("Failure\n");
 		return (EXIT_FAILURE);
 	}
-	init_map_params(&fdf);
 	fdf = read_map_file(argv[1]);
 	calculate_min_max_depth(&fdf);
 	init_mlx(&fdf);
