@@ -1,9 +1,3 @@
-
----
-
-### **3. FDF**
-
-```markdown
 # FDF
 
 FDF (Fil De Fer) is a 3D wireframe viewer project developed in **C** as part of the **42 School curriculum**. The program takes a 2D map as input and visualizes it in a 3D space using wireframe modeling, applying rotations, translations, and scaling to create an interactive visualization.
