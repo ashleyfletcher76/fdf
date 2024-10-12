@@ -29,4 +29,4 @@ Clone the repository and compile the project:
   make
 
 ## Usage
-./fdf maps/sample_map.fdf
+./fdf test_maps/[sample_map.fdf]
