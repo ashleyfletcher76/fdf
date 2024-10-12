@@ -27,6 +27,7 @@ Clone the repository and compile the project:
   git clone https://github.com/username/fdf.git
   cd fdf
   make
+```
 
 ## Usage
 ./fdf test_maps/[sample_map.fdf]
