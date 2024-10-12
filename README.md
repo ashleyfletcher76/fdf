@@ -24,10 +24,9 @@ FDF reads a 2D map (grid) where each point represents a height value and project
 Clone the repository and compile the project:
 
 ```bash
-git clone https://github.com/username/fdf.git
-cd fdf
-make
-```bash
+  git clone https://github.com/username/fdf.git
+  cd fdf
+  make
 
 ## Usage
 ./fdf maps/sample_map.fdf
