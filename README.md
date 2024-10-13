@@ -31,8 +31,11 @@ Clone the repository and compile the project:
 ```
 
 ## Usage
+
+Either use this 42 example or go to test_maps directory and choose the one you want.
+
 ```bash
-./fdf test_maps/[sample_map.fdf]
+./fdf test_maps/42.fdf
 ```
 
 ## Authors
