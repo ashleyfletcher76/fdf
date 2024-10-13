@@ -7,6 +7,7 @@ FDF (Fil De Fer) is a 3D wireframe viewer project developed in **C** as part of 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Authors](#authors)
 
 ## Project Description
 
@@ -24,10 +25,13 @@ FDF reads a 2D map (grid) where each point represents a height value and project
 Clone the repository and compile the project:
 
 ```bash
-  git clone https://github.com/username/fdf.git
+  git clone https://github.com/ashleyfletcher76/fdf.git
   cd fdf
   make
 ```
 
 ## Usage
 ./fdf test_maps/[sample_map.fdf]
+
+## Authors
+
