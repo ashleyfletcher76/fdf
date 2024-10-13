@@ -31,7 +31,10 @@ Clone the repository and compile the project:
 ```
 
 ## Usage
+```bash
 ./fdf test_maps/[sample_map.fdf]
+```
 
 ## Authors
 
+- **Ashley Fletcher** - *Developer* - [GitHub Profile](https://github.com/ashleyfletcher76)
